@@ -15,10 +15,9 @@ public class Pipes {
     public int pipeLocY;
 
     BufferedImage pipeImage;
-    KeyHandler keyH = new KeyHandler();
 
-    private int pipeWidth;
-    private int pipeHeight;
+    private final int pipeWidth;
+    private final int pipeHeight;
 
     public Pipes(GamePanel gp,Bird bird,String direction)
     {
@@ -33,14 +32,7 @@ public class Pipes {
 
     public void update()
     {
-        if(keyH.isA)
-        {
-            System.out.println("a");
-        }
-        if(keyH.isD)
-        {
-            System.out.println("d");
-        }
+
     }
 
     public void getPipeImage(String direction)

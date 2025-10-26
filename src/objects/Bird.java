@@ -1,5 +1,6 @@
 package objects;
 
+import keyBusinesses.KeyHandler;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -36,6 +37,26 @@ public class Bird {
         }catch(IOException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    int state = 0;
+
+    public void update(KeyHandler keyH)
+    {
+        if(keyH.isUp)
+        {
+            for(int i = 0;i<10;i++)
+            {
+                birdPosY--;
+            }
+            state++;
+
+                System.out.println("a");
+                for(int i = 0;i<10;i++)
+                {
+                    birdPosY++;
+                }
         }
     }
 
