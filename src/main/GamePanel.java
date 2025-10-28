@@ -23,11 +23,15 @@ public class GamePanel extends JPanel implements Runnable{
     Bird bird = new Bird(this);
     Pipes pipes = new Pipes(this,bird,"down");
 
+
     public GamePanel()
     {
-        this.addKeyListener(keyH);
-        this.setDoubleBuffered(true);
         this.setFocusable(true);
+        this.setDoubleBuffered(true);
+
+        keyH.setBird(bird);
+
+        this.addKeyListener(keyH);
     }
 
     public void startThread()
@@ -60,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void update()
     {
         pipes.update();
-        bird.update(keyH);
+        bird.update();
     }
 
     @Override

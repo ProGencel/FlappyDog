@@ -1,25 +1,30 @@
 package objects;
 
-import keyBusinesses.KeyHandler;
 import main.GamePanel;
+import physics.GravityManager;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.util.Objects;
 
 public class Bird {
 
     GamePanel gp;
+    GravityManager gm = new GravityManager();
 
     public BufferedImage birdImage;
     public int birdPosX;
     public int birdPosY;
 
+    public double birdVelocityY = 0;
+    public int birdSpeedY = 1;
+
     protected final int birdHeight = 70;
     protected final int birdWidth = 70;
+
+    boolean isJump = false;
 
     public Bird(GamePanel gp)
     {
@@ -40,24 +45,19 @@ public class Bird {
         }
     }
 
-    int state = 0;
-
-    public void update(KeyHandler keyH)
+    public void jumpBird()
     {
-        if(keyH.isUp)
-        {
-            for(int i = 0;i<10;i++)
-            {
-                birdPosY--;
-            }
-            state++;
+        this.birdVelocityY = -10.0;
+    }
 
-                System.out.println("a");
-                for(int i = 0;i<10;i++)
-                {
-                    birdPosY++;
-                }
-        }
+    public void update()
+    {
+
+        birdPosY+= gm.getGravity(birdSpeedY);
+        birdPosY+= this.birdVelocityY;
+        this.birdVelocityY+= 0.2;
+
+
     }
 
     public void drawBird(Graphics2D g2)
