@@ -21,7 +21,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this);
-    Pipes pipes = new Pipes(this,bird,"down");
+    Pipes pipeDown = new Pipes(this,bird,"down");
+    Pipes pipeUp = new Pipes(this,bird,"up");
 
 
     public GamePanel()
@@ -63,7 +64,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-        pipes.update();
+        pipeDown.update();
+        pipeUp.update();
         bird.update();
     }
 
@@ -74,7 +76,8 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
 
         bird.drawBird(g2);
-        pipes.draw(g2);
+        pipeDown.draw(g2);
+        pipeUp.draw(g2);
 
     }
 

@@ -16,23 +16,26 @@ public class Pipes {
 
     BufferedImage pipeImage;
 
+    GamePanel gp;
+
     private final int pipeWidth;
     private final int pipeHeight;
+    private final int pipeSpeed = 3;
 
     public Pipes(GamePanel gp,Bird bird,String direction)
     {
 
-        getPipeImage(direction);
         pipeWidth = bird.birdWidth*2;
         pipeHeight = gp.windowHeight/2 - bird.birdHeight - 25;
         pipeLocX = gp.windowWidth-pipeWidth;
-        pipeLocY = gp.windowHeight-pipeHeight;
+        this.gp = gp;
 
+        getPipeImage(direction);
     }
 
     public void update()
     {
-
+        this.pipeLocX-=pipeSpeed;
     }
 
     public void getPipeImage(String direction)
@@ -42,10 +45,12 @@ public class Pipes {
             if(direction.equals("down"))
             {
                 pipeImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pipes/DownPipe.png")));
+                this.pipeLocY = gp.windowHeight-pipeHeight;
             }
             else
             {
                 pipeImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pipes/UpPipe.png")));
+                this.pipeLocY = 0;
             }
         } catch (IOException e) {
             e.printStackTrace();
