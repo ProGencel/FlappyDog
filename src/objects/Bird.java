@@ -26,6 +26,24 @@ public class Bird {
 
     boolean isJump = false;
 
+    public String isCollision()
+    {
+        int birdLeft = birdPosX;
+        int birdRight = birdPosX + birdWidth;
+        int birdUp = birdPosY;
+        int birdDown = birdPosY + birdHeight;
+
+        if(birdUp <= 0)
+        {
+            return "upCollision";
+        }
+        else if(birdDown >= gp.windowHeight)
+        {
+            return "downCollision";
+        }
+        return "noCollision";
+    }
+
     public Bird(GamePanel gp)
     {
         this.gp = gp;
@@ -47,7 +65,7 @@ public class Bird {
 
     public void jumpBird()
     {
-        this.birdVelocityY = -10.0;
+        birdVelocityY = -10.0;
     }
 
     public void update()
@@ -55,9 +73,24 @@ public class Bird {
 
         birdPosY+= gm.getGravity(birdSpeedY);
         birdPosY+= this.birdVelocityY;
-        this.birdVelocityY+= 0.2;
+        if(this.birdVelocityY != 0)
+        {
+            this.birdVelocityY+= 0.2;
+        }
+
+        if(isCollision().equals("upCollision"))
+        {
+            birdPosY = 0;
+            birdVelocityY = 0;      /* <----When we dont do that bird tries to jump and collision try to get bird the 0 location
+                                    and bird look like up down up down*/
+            birdPosY+= gm.getGravity(birdSpeedY);
+        }
+        else if(isCollision().equals("downCollision"))
+        {
+            birdPosY = gp.windowHeight - birdHeight;
 
 
+        }
     }
 
     public void drawBird(Graphics2D g2)
