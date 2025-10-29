@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable{
     private final int FPS = 60;
     private final int miliSecondBetween2Frames = 1_000 / FPS;
 
-    Thread gameThread;
+    public Thread gameThread;
 
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this);
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
             try {
                 Thread.sleep(miliSecondBetween2Frames-betweenTime);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                break;
             }
         }
 
