@@ -55,12 +55,17 @@ public class Pipes {
 
         if(pipeDirection.equals("up"))
         {
-             isDmg = (birdRight > pipeLeft && birdRight < pipeRight)
-                && (birdUp < pipeDown);
+             isDmg = ((birdRight > pipeLeft && birdRight < pipeRight)
+                && (birdUp < pipeDown))
+            || ((birdLeft < pipeRight && birdLeft > pipeLeft)
+                     && (birdUp < pipeDown));
         }
         else if(pipeDirection.equals("down"))
         {
-
+            isDmg = ((birdRight > pipeLeft && birdRight < pipeRight)
+                    && (birdDown > pipeUp))
+            || ((birdLeft < pipeRight && birdLeft > pipeLeft)
+                    && (birdDown > pipeUp));
         }
 
         if(isDmg)

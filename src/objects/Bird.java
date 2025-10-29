@@ -28,8 +28,6 @@ public class Bird {
 
     public String isCollision()
     {
-        int birdLeft = birdPosX;
-        int birdRight = birdPosX + birdWidth;
         int birdUp = birdPosY;
         int birdDown = birdPosY + birdHeight;
 
