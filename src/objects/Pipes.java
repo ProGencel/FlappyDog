@@ -21,7 +21,7 @@ public class Pipes {
 
     private final int pipeWidth;
     private final int pipeHeight;
-    private final int pipeSpeed = 3;
+    private final int pipeSpeed = 4;
     String pipeDirection;
 
     public Pipes(GamePanel gp,Bird bird,String direction)

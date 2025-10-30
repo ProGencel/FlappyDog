@@ -63,7 +63,7 @@ public class Bird {
 
     public void jumpBird()
     {
-        birdVelocityY = -10.0;
+        birdVelocityY = -8.5;
     }
 
     public void update()
