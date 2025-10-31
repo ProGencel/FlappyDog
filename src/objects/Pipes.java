@@ -2,6 +2,7 @@ package objects;
 
 import keyBusinesses.KeyHandler;
 import main.GamePanel;
+import physics.Collider;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,7 +25,9 @@ public class Pipes {
     private final int pipeSpeed = 4;
     String pipeDirection;
 
-    public Pipes(GamePanel gp,Bird bird,String direction)
+    Collider coll;
+
+    public Pipes(GamePanel gp,Bird bird,String direction,Collider coll)
     {
 
         pipeWidth = bird.birdWidth*2;
@@ -32,6 +35,7 @@ public class Pipes {
         pipeLocX = gp.windowWidth-pipeWidth;
         this.gp = gp;
         this.bird = bird;
+        this.coll = coll;
 
         this.pipeDirection = direction;
         getPipeImage(direction);
@@ -40,10 +44,10 @@ public class Pipes {
     public void update()
     {
 
-        int birdLeft = bird.birdPosX;
-        int birdRight = bird.birdPosX + bird.birdWidth;
-        int birdUp = bird.birdPosY;
-        int birdDown = bird.birdPosY + bird.birdHeight;
+        int birdLeft = bird.coll.x;
+        int birdRight = bird.coll.x + bird.coll.width;
+        int birdUp = bird.coll.y;
+        int birdDown = bird.coll.y + bird.coll.height;
 
 
         int pipeLeft = pipeLocX;
@@ -98,6 +102,8 @@ public class Pipes {
     public void draw(Graphics2D g2)
     {
         g2.drawImage(pipeImage,pipeLocX,pipeLocY,pipeWidth,pipeHeight,null);
+        g2.setColor(Color.black);
+        g2.drawRect(pipeLocX,pipeLocY,pipeWidth,pipeHeight);
     }
 
 }

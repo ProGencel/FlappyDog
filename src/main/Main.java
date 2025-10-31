@@ -10,11 +10,10 @@ public class Main {
         GamePanel gp = new GamePanel();
         window.add(gp);
 
-        window.setSize(gp.windowWidth,gp.windowHeight);
-        window.setLocationRelativeTo(null);
-
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setVisible(true);
+        window.pack();
+        window.setLocationRelativeTo(null);
 
         gp.startThread();
 

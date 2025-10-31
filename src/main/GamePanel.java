@@ -4,6 +4,7 @@ package main;
 import keyBusinesses.KeyHandler;
 import objects.Bird;
 import objects.Pipes;
+import physics.Collider;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,14 +20,16 @@ public class GamePanel extends JPanel implements Runnable{
 
     public Thread gameThread;
 
+    Collider coll = new Collider();
     KeyHandler keyH = new KeyHandler();
-    Bird bird = new Bird(this);
-    Pipes pipeDown = new Pipes(this,bird,"down");
-    Pipes pipeUp = new Pipes(this,bird,"up");
+    Bird bird = new Bird(this,coll);
+    Pipes pipeDown = new Pipes(this,bird,"down",coll);
+    Pipes pipeUp = new Pipes(this,bird,"up",coll);
 
 
     public GamePanel()
     {
+        setPreferredSize(new Dimension(windowWidth,windowHeight));
         this.setFocusable(true);
         this.setDoubleBuffered(true);
 
@@ -78,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
         bird.drawBird(g2);
         pipeDown.draw(g2);
         pipeUp.draw(g2);
+        g2.drawString("merhaba",100,windowHeight-100);
 
     }
 
