@@ -1,6 +1,7 @@
 package main;
 
 
+import background.Background;
 import keyBusinesses.KeyHandler;
 import objects.Bird;
 import physics.Collider;
@@ -23,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public Thread gameThread;
 
+    Background back = new Background(this);
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this, new Collider());
     public PipeManager pipemanager = new PipeManager(this,bird,new Collider());
@@ -47,8 +49,11 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void run() {
 
+        long start = System.nanoTime();
+        int frameCounter = 0;
         while(gameThread!=null)
         {
+
             long startTime = System.currentTimeMillis();
             update();
             repaint();
@@ -64,7 +69,16 @@ public class GamePanel extends JPanel implements Runnable{
             } catch (InterruptedException e) {
                 break;
             }
+            long finish = System.nanoTime();
+            frameCounter++;
+            if(finish-start >= 1_000_000_000)
+            {
+                System.out.println(frameCounter);
+                frameCounter=0;
+                start = finish;
+            }
         }
+
 
     }
 
@@ -80,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
+        back.draw(g2);
         bird.drawBird(g2);
         pipemanager.draw(g2);
     }
