@@ -20,8 +20,6 @@ public class GamePanel extends JPanel implements Runnable{
     public int windowHeight = size*10;
 
     private final int FPS = 60;
-    private final int miliSecondBetween2Frames = 1_000 / FPS;
-
     public Thread gameThread;
 
     Background back = new Background(this);
@@ -46,41 +44,44 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
 
-    @Override
-    public void run() {
-
-        long start = System.nanoTime();
-        int frameCounter = 0;
-        while(gameThread!=null)
+        @Override
+        public void run()
         {
+            long start = System.nanoTime();
+            int frameCounter = 0;
+            long frameTime = 1_000_000_000 / FPS;
+            long nextFrameTime = System.nanoTime() + frameTime;
 
-            long startTime = System.currentTimeMillis();
-            update();
-            repaint();
-            long lastTime = System.currentTimeMillis();
+            while(gameThread!=null) {
 
-            long betweenTime = lastTime-startTime;
-
-            try {
-                if(miliSecondBetween2Frames-betweenTime > 0)
-                {
-                    Thread.sleep(miliSecondBetween2Frames-betweenTime);
+                while(System.nanoTime() >= nextFrameTime) {
+                    update();
+                    repaint();
+                    nextFrameTime+=frameTime;
+                    frameCounter++;
                 }
-            } catch (InterruptedException e) {
-                break;
-            }
-            long finish = System.nanoTime();
-            frameCounter++;
-            if(finish-start >= 1_000_000_000)
-            {
-                System.out.println(frameCounter);
-                frameCounter=0;
-                start = finish;
+
+                long timeRemaining = nextFrameTime - System.nanoTime();
+                if(timeRemaining>0)
+                {
+                    long sleepTime = timeRemaining / 1_000_000;
+                    try
+                    {
+                        Thread.sleep(sleepTime);
+                    }catch (InterruptedException e)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+
+                long finish = System.nanoTime();
+                if(finish-start >= 1_000_000_000) {
+                    System.out.println("FPS : "  + frameCounter);
+                    frameCounter = 0;
+                    start = finish;
+                }
             }
         }
-
-
-    }
 
     public void update()
     {
