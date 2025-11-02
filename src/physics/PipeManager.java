@@ -23,10 +23,7 @@ public class PipeManager {
             pipe.add(new Pipes(gp,bird,"up",new Collider()));
             pipe.add(new Pipes(gp,bird,"down",new Collider()));
         }
-        for(int i = 0;i<numberOfPipes/2;i++)
-        {
-            setPipes();
-        }
+        setPipes();
     }
 
     public void update()
@@ -42,8 +39,19 @@ public class PipeManager {
             {
                 p1.pipeLocX = gp.windowWidth;
                 p2.pipeLocX = p1.pipeLocX;
+                setRandomYForPipes(p1,p2);
             }
         }
+    }
+
+    public void setRandomYForPipes(Pipes p1, Pipes p2)
+    {
+        Random rand = new Random();
+        int randNum = gp.size*7;
+        int horGap = gp.size*2;
+
+        p1.pipeLocY = rand.nextInt(randNum) - gp.size*12;
+        p2.pipeLocY = p1.pipeLocY + p1.pipeHeight + horGap;
     }
 
     public void setPipes()
@@ -52,20 +60,15 @@ public class PipeManager {
         {
             Pipes p1 = pipe.get(i);
             Pipes p2 = pipe.get(i+1);
-            Random rand = new Random();
-            int randNum = 200;
+            setRandomYForPipes(p1,p2);
 
-            int p1Y = rand.nextInt(randNum) - randNum/2;
-
-            p1.pipeHeight = p1.pipeHeight - p1Y;
-            p2.pipeHeight = Pipes.totalPipeHeight - p1.pipeHeight;
         }
 
         for(int i = 0;i<numberOfPipes;i+=2)
         {
             Pipes p1 = pipe.get(i);
             Pipes p2 = pipe.get(i+1);
-            int pipesGap = (gp.windowWidth-((numberOfPipes)/2 - 1) * p1.pipeWidth) / 4; //( windows width - pipecollider*numberofpipes ) / 5
+            int pipesGap = (gp.windowWidth-((numberOfPipes)/2 - 1) * p1.pipeWidth) / 4;
 
             if(i != 0)
             {
@@ -75,27 +78,12 @@ public class PipeManager {
                 p1.pipeLocX = tempP.pipeLocX + p1.pipeWidth + pipesGap;
                 p2.pipeLocX = p1.pipeLocX;
             }
-//            else
-//            {
-//                Pipes tempP = pipe.get(numberOfPipes-1);
-//                p1.pipeLocX = tempP.pipeLocX + p1.pipeWidth + pipesGap;
-//                p2.pipeLocX = p1.pipeLocX;
-//            }
-        }
-
-        for(int i = 0;i<numberOfPipes;i+=2)
-        {
-            Pipes p1 = pipe.get(i);     //Up
-            Pipes p2 = pipe.get(i+1);   //Down
-
-            p1.pipeLocY = 0;
-            p2.pipeLocY = gp.windowHeight - p2.pipeHeight;
         }
     }
 
     public void draw(Graphics2D g2)
     {
-        for(int i =0;i<numberOfPipes;i++)
+        for(int i = 0;i<numberOfPipes;i++)
         {
             Pipes p = pipe.get(i);
             p.draw(g2);

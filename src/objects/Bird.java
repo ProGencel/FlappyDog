@@ -22,8 +22,8 @@ public class Bird {
     public double birdVelocityY = 0;
     public int birdSpeedY = 1;
 
-    protected final int birdHeight = 70;
-    protected final int birdWidth = 70;
+    protected int birdHeight;
+    protected int birdWidth;
 
     Collider coll;
 
@@ -45,6 +45,9 @@ public class Bird {
 
     public Bird(GamePanel gp, Collider coll)
     {
+        this.birdHeight = gp.size;
+        this.birdWidth = gp.size;
+
         this.gp = gp;
         this.coll = coll;
 
@@ -108,7 +111,7 @@ public class Bird {
         setCollider();
         g2.drawImage(birdImage,birdPosX,birdPosY,birdWidth,birdHeight,null);
         g2.setColor(Color.black);
-        g2.drawRect(coll.x, coll.y, coll.width, coll.height);
+        //g2.drawRect(coll.x, coll.y, coll.width, coll.height);
         //Hit Box
     }
 }

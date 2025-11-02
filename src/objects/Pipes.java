@@ -23,7 +23,6 @@ public class Pipes {
     public final int pipeWidth;
     public int pipeHeight;
     private final int pipeSpeed = 4;
-    public static int totalPipeHeight;
     String pipeDirection;
 
     public Collider coll;
@@ -31,9 +30,9 @@ public class Pipes {
     public Pipes(GamePanel gp,Bird bird,String direction,Collider coll)
     {
 
-        pipeWidth = bird.birdWidth * 3; // 210
-        pipeHeight = gp.windowHeight/2 - bird.birdHeight - 25;
-        totalPipeHeight = pipeHeight * 2;
+        pipeWidth = bird.birdWidth * 3;
+        pipeHeight = gp.size * 12; //64 * 6
+
 
         pipeLocX = gp.windowWidth-pipeWidth;
         this.gp = gp;
@@ -133,9 +132,8 @@ public class Pipes {
     {
         g2.drawImage(pipeImage,pipeLocX,pipeLocY,pipeWidth,pipeHeight,null);
         g2.setColor(Color.black);
-        g2.drawRect(coll.x,coll.y,coll.width,coll.height);  //Hit box
-        g2.drawRect(pipeLocX,pipeLocY,pipeWidth,pipeHeight);
-        //Hit box
+        //g2.drawRect(coll.x,coll.y,coll.width,coll.height);  //Hit box
+        //g2.drawRect(pipeLocX,pipeLocY,pipeWidth,pipeHeight);
     }
 
 }

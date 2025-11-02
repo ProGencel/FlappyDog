@@ -11,9 +11,12 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
 
+    final int SPRITE_SIZE = 32;
+    final int scale = 2;
+    public int size = SPRITE_SIZE*scale;
 
-    public int windowWidth = 1200;
-    public int windowHeight = 650;
+    public int windowWidth = size*20;
+    public int windowHeight = size*10;
 
     private final int FPS = 60;
     private final int miliSecondBetween2Frames = 1_000 / FPS;
@@ -54,7 +57,10 @@ public class GamePanel extends JPanel implements Runnable{
             long betweenTime = lastTime-startTime;
 
             try {
-                Thread.sleep(miliSecondBetween2Frames-betweenTime);
+                if(miliSecondBetween2Frames-betweenTime > 0)
+                {
+                    Thread.sleep(miliSecondBetween2Frames-betweenTime);
+                }
             } catch (InterruptedException e) {
                 break;
             }
@@ -74,8 +80,8 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        pipemanager.draw(g2);
         bird.drawBird(g2);
+        pipemanager.draw(g2);
     }
 
 }
