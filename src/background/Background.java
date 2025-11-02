@@ -52,9 +52,29 @@ public class Background {
        }
     }
 
+    int cout = 0;
+
     public void update()
     {
+        if(cout == Integer.MAX_VALUE)
+        {
+            cout = 0;
+        }
+        cout++;
+        moveImg(Sky);
 
+        if(cout % 2 == 0)
+        {
+            moveImg(Clouds);
+        }
+        if(cout % 3 == 0)
+        {
+            moveImg(Rock_Mountains);
+        }
+        if(cout % 4 == 0)
+        {
+            moveImg(Grass_Mountains);
+        }
     }
 
     public void draw(Graphics2D g2)

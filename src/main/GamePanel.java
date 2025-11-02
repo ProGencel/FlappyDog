@@ -87,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
     {
         bird.update();
         pipemanager.update();
+        back.update();
     }
 
     @Override
