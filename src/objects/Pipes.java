@@ -41,19 +41,48 @@ public class Pipes {
         getPipeImage(direction);
     }
 
+    public void setCollision()
+    {
+        int gapUp = 0;
+        int gapDown = 0;
+        int gapLeft = 0;
+        int gapRight = 0;
+
+        if(pipeDirection.equals("down"))
+        {
+            gapUp = 20;
+            gapDown = 20;
+            gapLeft = 13;
+            gapRight = 40;
+        }
+        else if(pipeDirection.equals("up"))
+        {
+            gapUp = 0;
+            gapDown = 20;
+            gapLeft = 13;
+            gapRight = 40;
+        }
+
+        coll.x = pipeLocX + gapLeft;
+        coll.y = pipeLocY + gapUp;
+        coll.width = pipeWidth - gapRight;
+        coll.height = pipeHeight - gapDown;
+    }
+
     public void update()
     {
+
+        setCollision();
 
         int birdLeft = bird.coll.x;
         int birdRight = bird.coll.x + bird.coll.width;
         int birdUp = bird.coll.y;
         int birdDown = bird.coll.y + bird.coll.height;
 
-
-        int pipeLeft = pipeLocX;
-        int pipeRight = pipeLocX + pipeWidth;
-        int pipeUp = pipeLocY;
-        int pipeDown = pipeLocY + pipeHeight;
+        int pipeLeft = coll.x;
+        int pipeRight = coll.x + coll.width;
+        int pipeUp = coll.y;
+        int pipeDown = coll.y + coll.height;
 
         boolean isDmg = false;
 
@@ -103,7 +132,7 @@ public class Pipes {
     {
         g2.drawImage(pipeImage,pipeLocX,pipeLocY,pipeWidth,pipeHeight,null);
         g2.setColor(Color.black);
-        g2.drawRect(pipeLocX,pipeLocY,pipeWidth,pipeHeight);
+        //Hit Box g2.drawRect(coll.x,coll.y,coll.width,coll.height);
     }
 
 }

@@ -20,11 +20,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     public Thread gameThread;
 
-    Collider coll = new Collider();
     KeyHandler keyH = new KeyHandler();
-    Bird bird = new Bird(this,coll);
-    Pipes pipeDown = new Pipes(this,bird,"down",coll);
-    Pipes pipeUp = new Pipes(this,bird,"up",coll);
+    Bird bird = new Bird(this, new Collider());
+    Pipes pipeDown = new Pipes(this,bird,"down",new Collider());
+    Pipes pipeUp = new Pipes(this,bird,"up",new Collider());
 
 
     public GamePanel()
@@ -78,11 +77,9 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        bird.drawBird(g2);
         pipeDown.draw(g2);
         pipeUp.draw(g2);
-        g2.drawString("merhaba",100,windowHeight-100);
-
+        bird.drawBird(g2);
     }
 
 }
