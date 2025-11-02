@@ -108,7 +108,7 @@ public class Bird {
         setCollider();
         g2.drawImage(birdImage,birdPosX,birdPosY,birdWidth,birdHeight,null);
         g2.setColor(Color.black);
-        //g2.drawRect(coll.x, coll.y, coll.width, coll.height);
+        g2.drawRect(coll.x, coll.y, coll.width, coll.height);
         //Hit Box
     }
 }

@@ -20,18 +20,21 @@ public class Pipes {
     GamePanel gp;
     Bird bird;
 
-    private final int pipeWidth;
-    private final int pipeHeight;
+    public final int pipeWidth;
+    public int pipeHeight;
     private final int pipeSpeed = 4;
+    public static int totalPipeHeight;
     String pipeDirection;
 
-    Collider coll;
+    public Collider coll;
 
     public Pipes(GamePanel gp,Bird bird,String direction,Collider coll)
     {
 
-        pipeWidth = bird.birdWidth*2;
+        pipeWidth = bird.birdWidth * 3; // 210
         pipeHeight = gp.windowHeight/2 - bird.birdHeight - 25;
+        totalPipeHeight = pipeHeight * 2;
+
         pipeLocX = gp.windowWidth-pipeWidth;
         this.gp = gp;
         this.bird = bird;
@@ -41,24 +44,27 @@ public class Pipes {
         getPipeImage(direction);
     }
 
+
     public void setCollision()
     {
         int gapUp = -1;
-        int gapDown;
+        int gapDown = -1;
         int gapLeft;
         int gapRight;
 
+
         if(pipeDirection.equals("down"))
         {
-            gapUp = 20;
+            gapUp = 30;
+            gapDown = 30;
         }
         else if(pipeDirection.equals("up"))
         {
             gapUp = 0;
+            gapDown = 30;
         }
-        gapDown = 20;
-        gapLeft = 30;
-        gapRight = 70;
+        gapLeft = 50;
+        gapRight = 107;
 
         coll.x = pipeLocX + gapLeft;
         coll.y = pipeLocY + gapUp;
@@ -113,12 +119,10 @@ public class Pipes {
             if(direction.equals("down"))
             {
                 pipeImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pipes/DownPipe.png")));
-                this.pipeLocY = gp.windowHeight-pipeHeight;
             }
             else
             {
                 pipeImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pipes/UpPipe.png")));
-                this.pipeLocY = 0;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,7 +133,8 @@ public class Pipes {
     {
         g2.drawImage(pipeImage,pipeLocX,pipeLocY,pipeWidth,pipeHeight,null);
         g2.setColor(Color.black);
-        //g2.drawRect(coll.x,coll.y,coll.width,coll.height);
+        g2.drawRect(coll.x,coll.y,coll.width,coll.height);  //Hit box
+        g2.drawRect(pipeLocX,pipeLocY,pipeWidth,pipeHeight);
         //Hit box
     }
 

@@ -3,8 +3,8 @@ package main;
 
 import keyBusinesses.KeyHandler;
 import objects.Bird;
-import objects.Pipes;
 import physics.Collider;
+import physics.PipeManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,9 +22,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this, new Collider());
-    Pipes pipeDown = new Pipes(this,bird,"down",new Collider());
-    Pipes pipeUp = new Pipes(this,bird,"up",new Collider());
-
+    public PipeManager pipemanager = new PipeManager(this,bird,new Collider());
 
     public GamePanel()
     {
@@ -66,9 +64,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-        pipeDown.update();
-        pipeUp.update();
         bird.update();
+        pipemanager.update();
     }
 
     @Override
@@ -77,8 +74,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        pipeDown.draw(g2);
-        pipeUp.draw(g2);
+        pipemanager.draw(g2);
         bird.drawBird(g2);
     }
 
