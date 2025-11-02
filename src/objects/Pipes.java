@@ -43,25 +43,22 @@ public class Pipes {
 
     public void setCollision()
     {
-        int gapUp = 0;
-        int gapDown = 0;
-        int gapLeft = 0;
-        int gapRight = 0;
+        int gapUp = -1;
+        int gapDown;
+        int gapLeft;
+        int gapRight;
 
         if(pipeDirection.equals("down"))
         {
             gapUp = 20;
-            gapDown = 20;
-            gapLeft = 13;
-            gapRight = 40;
         }
         else if(pipeDirection.equals("up"))
         {
             gapUp = 0;
-            gapDown = 20;
-            gapLeft = 13;
-            gapRight = 40;
         }
+        gapDown = 20;
+        gapLeft = 30;
+        gapRight = 70;
 
         coll.x = pipeLocX + gapLeft;
         coll.y = pipeLocY + gapUp;
@@ -132,7 +129,8 @@ public class Pipes {
     {
         g2.drawImage(pipeImage,pipeLocX,pipeLocY,pipeWidth,pipeHeight,null);
         g2.setColor(Color.black);
-        //Hit Box g2.drawRect(coll.x,coll.y,coll.width,coll.height);
+        //g2.drawRect(coll.x,coll.y,coll.width,coll.height);
+        //Hit box
     }
 
 }
