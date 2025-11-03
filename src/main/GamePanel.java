@@ -4,6 +4,7 @@ package main;
 import background.Background;
 import keyBusinesses.KeyHandler;
 import objects.Bird;
+import objects.Score;
 import physics.Collider;
 import physics.PipeManager;
 
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable{
     private final int FPS = 60;
     public Thread gameThread;
 
+    Score score = new Score(this);
     Background back = new Background(this);
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this, new Collider());
@@ -99,6 +101,7 @@ public class GamePanel extends JPanel implements Runnable{
         back.draw(g2);
         bird.drawBird(g2);
         pipemanager.draw(g2);
+        score.draw(g2);
     }
 
 }

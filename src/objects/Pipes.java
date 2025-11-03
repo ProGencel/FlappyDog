@@ -101,6 +101,12 @@ public class Pipes {
                     && (birdDown > pipeUp))
             || ((birdLeft < pipeRight && birdLeft > pipeLeft)
                     && (birdDown > pipeUp));
+
+            if(birdRight >= pipeRight && birdRight <= pipeRight+3)
+            {
+                Score.score++;
+            }
+
         }
 
         if(isDmg)
