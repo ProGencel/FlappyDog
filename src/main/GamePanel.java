@@ -6,117 +6,133 @@ import keyBusinesses.KeyHandler;
 import objects.Bird;
 import objects.Score;
 import physics.Collider;
+import physics.Music;
 import physics.PipeManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     final int SPRITE_SIZE = 32;
     final int scale = 2;
-    public int size = SPRITE_SIZE*scale;
+    public int size = SPRITE_SIZE * scale;
 
-    public int windowWidth = size*20;
-    public int windowHeight = size*10;
+    public int windowWidth = size * 20;
+    public int windowHeight = size * 10;
 
     private final int FPS = 60;
     public Thread gameThread;
     public boolean isGameOver = false;
 
+    Music music = new Music();
     Score score = new Score(this);
-    GameOver go = new GameOver(this,score);
+    GameOver go = new GameOver(this, score);
     Background back = new Background(this);
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this, new Collider());
-    public PipeManager pipemanager = new PipeManager(this,bird,new Collider());
+    public PipeManager pipemanager = new PipeManager(this, bird, new Collider());
 
-    public GamePanel()
-    {
-        setPreferredSize(new Dimension(windowWidth,windowHeight));
+    public GamePanel() {
+        setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setFocusable(true);
         this.setDoubleBuffered(true);
 
-        keyH.setBird(bird,this);
+        keyH.setBird(bird, this);
 
         this.addKeyListener(keyH);
+        music.setSound();
+        playMusic(0);
     }
 
-    public void startThread()
-    {
+    public void startThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
-        @Override
-        public void run()
-        {
-            long start = System.nanoTime();
-            int frameCounter = 0;
-            long frameTime = 1_000_000_000 / FPS;
-            long nextFrameTime = System.nanoTime() + frameTime;
+    @Override
+    public void run() {
+        long start = System.nanoTime();
+        int frameCounter = 0;
+        long frameTime = 1_000_000_000 / FPS;
+        long nextFrameTime = System.nanoTime() + frameTime;
 
-            while(!isGameOver) {
+        while (!isGameOver) {
 
-                while(System.nanoTime() >= nextFrameTime) {
-                    update();
-                    repaint();
-                    nextFrameTime+=frameTime;
-                    frameCounter++;
-                }
+            while (System.nanoTime() >= nextFrameTime) {
+                update();
+                repaint();
+                nextFrameTime += frameTime;
+                frameCounter++;
+            }
 
-                long timeRemaining = nextFrameTime - System.nanoTime();
-                if(timeRemaining>0)
-                {
-                    long sleepTime = timeRemaining / 1_000_000;
-                    try
-                    {
-                        Thread.sleep(sleepTime);
-                    }catch (InterruptedException e)
-                    {
-                        Thread.currentThread().interrupt();
-                    }
-                }
-
-                long finish = System.nanoTime();
-                if(finish-start >= 1_000_000_000) {
-                    System.out.println("FPS : "  + frameCounter);
-                    frameCounter = 0;
-                    start = finish;
+            long timeRemaining = nextFrameTime - System.nanoTime();
+            if (timeRemaining > 0) {
+                long sleepTime = timeRemaining / 1_000_000;
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
-        }
 
-    public void update()
-    {
+            long finish = System.nanoTime();
+            if (finish - start >= 1_000_000_000) {
+                System.out.println("FPS : " + frameCounter);
+                frameCounter = 0;
+                start = finish;
+            }
+        }
+    }
+
+    public void update() {
         bird.update();
         pipemanager.update();
         back.update();
         go.update();
+        if(isGameOver)
+        {
+            stopMusic();
+        }
     }
 
-    public void gameRestart()
-    {
+    public void gameRestart() {
         pipemanager.setFirstPipes();
         bird.setBirdLoc();
+        Score.score = 0;
+        playMusic(0);
         isGameOver = false;
         startThread();
     }
 
     @Override
-    protected void paintComponent(Graphics g)
-    {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         back.draw(g2);
         bird.drawBird(g2);
         pipemanager.draw(g2);
         score.draw(g2);
-        if(isGameOver)
-        {
+        if (isGameOver) {
             go.draw(g2);
         }
+    }
+
+    public void playMusic(int i) {
+        music.setFile(i);
+        music.playSound();
+        music.loop();
+    }
+
+    public void playSound(int i) {
+        music.setFile(i);
+        music.playSound();
+    }
+
+    public void stopMusic()
+    {
+        music.stopSound();
     }
 
 }
