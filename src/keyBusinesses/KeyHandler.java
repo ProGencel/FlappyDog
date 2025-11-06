@@ -1,5 +1,6 @@
 package keyBusinesses;
 
+import main.GamePanel;
 import objects.Bird;
 
 import java.awt.event.KeyEvent;
@@ -8,10 +9,12 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     Bird bird;
+    GamePanel gp;
 
-    public void setBird(Bird bird)
+    public void setBird(Bird bird,GamePanel gp)
     {
         this.bird = bird;
+        this.gp = gp;
     }
 
     @Override
@@ -20,6 +23,13 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_SPACE)
         {
             bird.jumpBird();
+        }
+        if(code == KeyEvent.VK_R)
+        {
+            if(gp.isGameOver)
+            {
+                gp.gameRestart();
+            }
         }
     }
 

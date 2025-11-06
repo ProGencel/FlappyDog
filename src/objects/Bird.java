@@ -74,6 +74,11 @@ public class Bird {
         }
     }
 
+    public void setBirdLoc()
+    {
+        birdPosY = gp.windowHeight/2 - birdHeight/2;
+    }
+
     public void jumpBird()
     {
         birdVelocityY = -8.5;

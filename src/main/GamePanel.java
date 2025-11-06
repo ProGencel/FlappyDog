@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.setDoubleBuffered(true);
 
-        keyH.setBird(bird);
+        keyH.setBird(bird,this);
 
         this.addKeyListener(keyH);
     }
@@ -93,6 +93,14 @@ public class GamePanel extends JPanel implements Runnable{
         pipemanager.update();
         back.update();
         go.update();
+    }
+
+    public void gameRestart()
+    {
+        pipemanager.setFirstPipes();
+        bird.setBirdLoc();
+        isGameOver = false;
+        startThread();
     }
 
     @Override

@@ -81,6 +81,16 @@ public class PipeManager {
         }
     }
 
+    public void setFirstPipes()
+    {
+        Pipes p1 = pipe.get(0);
+        Pipes p2 = pipe.get(1);
+
+        p1.pipeLocX =  gp.windowWidth-p1.pipeWidth;
+        p2.pipeLocX =  gp.windowWidth-p2.pipeWidth;
+        setPipes();
+    }
+
     public void draw(Graphics2D g2)
     {
         for(int i = 0;i<numberOfPipes;i++)
