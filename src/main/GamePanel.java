@@ -22,8 +22,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     private final int FPS = 60;
     public Thread gameThread;
+    public boolean isGameOver = false;
 
     Score score = new Score(this);
+    GameOver go = new GameOver(this,score);
     Background back = new Background(this);
     KeyHandler keyH = new KeyHandler();
     Bird bird = new Bird(this, new Collider());
@@ -54,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
             long frameTime = 1_000_000_000 / FPS;
             long nextFrameTime = System.nanoTime() + frameTime;
 
-            while(gameThread!=null) {
+            while(!isGameOver) {
 
                 while(System.nanoTime() >= nextFrameTime) {
                     update();
@@ -90,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable{
         bird.update();
         pipemanager.update();
         back.update();
+        go.update();
     }
 
     @Override
@@ -102,6 +105,10 @@ public class GamePanel extends JPanel implements Runnable{
         bird.drawBird(g2);
         pipemanager.draw(g2);
         score.draw(g2);
+        if(isGameOver)
+        {
+            go.draw(g2);
+        }
     }
 
 }

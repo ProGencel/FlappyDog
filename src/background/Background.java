@@ -5,7 +5,6 @@ import main.GamePanel;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Objects;
 
 public class Background {
@@ -52,26 +51,25 @@ public class Background {
        }
     }
 
-    int cout = 0;
+    int count = 0;
 
     public void update()
     {
-        if(cout == Integer.MAX_VALUE)
+        if(count == Integer.MAX_VALUE)
         {
-            cout = 0;
+            count = 0;
         }
-        cout++;
-        moveImg(Sky);
+        count++;
 
-        if(cout % 2 == 0)
+        if(count % 2 == 0)
         {
             moveImg(Clouds);
         }
-        if(cout % 3 == 0)
+        if(count % 3 == 0)
         {
             moveImg(Rock_Mountains);
         }
-        if(cout % 4 == 0)
+        if(count % 4 == 0)
         {
             moveImg(Grass_Mountains);
         }

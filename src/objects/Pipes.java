@@ -111,7 +111,7 @@ public class Pipes {
 
         if(isDmg)
         {
-            gp.gameThread = null;
+            gp.isGameOver = true;
         }
 
         this.pipeLocX-=pipeSpeed;

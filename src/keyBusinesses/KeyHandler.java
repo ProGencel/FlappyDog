@@ -21,7 +21,6 @@ public class KeyHandler implements KeyListener {
         {
             bird.jumpBird();
         }
-
     }
 
     @Override
