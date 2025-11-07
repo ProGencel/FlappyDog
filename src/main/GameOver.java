@@ -11,6 +11,7 @@ public class GameOver {
 
     Rectangle gameOverPanel = new Rectangle();
     Color color = new Color(34, 139, 34, 240);
+    Font font = new Font("Monospaced",Font.PLAIN,30);
 
     public GameOver(GamePanel gp, Score score)
     {
@@ -30,7 +31,11 @@ public class GameOver {
 
         g2.setColor(Color.black);
         int score1 = Score.loadHighScore();
-        g2.drawString(String.valueOf(score1),gameOverPanel.x+100, gameOverPanel.y+100);
+        String highScore = String.valueOf(score1);
+        g2.setFont(font);
+        g2.drawString("YOUR SCORE :" + Score.score,gameOverPanel.x+100, gameOverPanel.y+150);
+        g2.drawString("YOUR HIGH SCORE :" + highScore,gameOverPanel.x+100, gameOverPanel.y+100);
+        g2.drawString("(PRESS 'R' FOR RESTART)",gameOverPanel.x+100, gameOverPanel.y+250);
     }
 
     public void update()

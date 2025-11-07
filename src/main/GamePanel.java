@@ -92,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
         go.update();
         if(isGameOver)
         {
+            playSound(2);
             stopMusic(0);
         }
     }
@@ -102,6 +103,8 @@ public class GamePanel extends JPanel implements Runnable {
         playMusic(0);
         Score.score = 0;
         isGameOver = false;
+        bird.birdVelocityY = 0;
+        stopMusic(2);
         startThread();
     }
 

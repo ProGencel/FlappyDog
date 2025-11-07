@@ -7,7 +7,8 @@ public class Music{
 
     Clip clipMusic;
     Clip clipJumpSound;
-    URL[] soundURL = new URL[2];
+    Clip clipLose;
+    URL[] soundURL = new URL[3];
 
     public void setSound()
     {
@@ -15,6 +16,7 @@ public class Music{
         {
             soundURL[0] = getClass().getResource("/sounds/backgroud.wav");
             soundURL[1] = getClass().getResource("/sounds/jump.wav");
+            soundURL[2] = getClass().getResource("/sounds/lose.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,6 +40,13 @@ public class Music{
                 clipJumpSound.open(ais);
                 setSoundLevel(-15.0f,1);
             }
+            else if(i == 2)
+            {
+                AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[2]);
+                clipLose = AudioSystem.getClip();
+                clipLose.open(ais);
+                setSoundLevel(-20.0f,1);
+            }
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -60,6 +69,13 @@ public class Music{
                 clipJumpSound.start();
             }
         }
+        else if(i == 2)
+        {
+            if(clipLose != null)
+            {
+                clipLose.start();
+            }
+        }
     }
 
     public void loop()
@@ -77,6 +93,10 @@ public class Music{
         {
             clipJumpSound.stop();
         }
+        else if(i == 2)
+        {
+            clipLose.stop();
+        }
     }
 
     public void setSoundLevel(float volumeLevel,int i)
@@ -89,6 +109,11 @@ public class Music{
         else if(i == 1)
         {
             FloatControl gainControl = (FloatControl) clipJumpSound.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volumeLevel);
+        }
+        else if(i == 2)
+        {
+            FloatControl gainControl = (FloatControl) clipLose.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(volumeLevel);
         }
     }
