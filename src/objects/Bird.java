@@ -82,6 +82,7 @@ public class Bird {
     public void jumpBird()
     {
         birdVelocityY = -8.5;
+        gp.playSound(1);
     }
 
     public void update()

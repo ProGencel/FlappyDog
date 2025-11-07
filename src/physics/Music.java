@@ -14,6 +14,7 @@ public class Music{
         try
         {
             soundURL[0] = getClass().getResource("/sounds/backgroud.wav");
+            soundURL[1] = getClass().getResource("/sounds/jump.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,5 +49,11 @@ public class Music{
     public void stopSound()
     {
         clip.stop();
+    }
+
+    public void setSoundLevel(float volumeLevel)
+    {
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(volumeLevel);
     }
 }

@@ -100,7 +100,6 @@ public class GamePanel extends JPanel implements Runnable {
         pipemanager.setFirstPipes();
         bird.setBirdLoc();
         Score.score = 0;
-        playMusic(0);
         isGameOver = false;
         startThread();
     }
@@ -121,12 +120,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void playMusic(int i) {
         music.setFile(i);
+        music.setSoundLevel(5.0f);
         music.playSound();
         music.loop();
     }
 
     public void playSound(int i) {
         music.setFile(i);
+        music.setSoundLevel(-15.0f);
         music.playSound();
     }
 

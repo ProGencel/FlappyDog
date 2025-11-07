@@ -47,7 +47,7 @@ public class PipeManager {
     public void setRandomYForPipes(Pipes p1, Pipes p2)
     {
         Random rand = new Random();
-        int randNum = gp.size*7;
+        int randNum = gp.size*8;
         int horGap = gp.size*2;
 
         p1.pipeLocY = rand.nextInt(randNum) - gp.size*12;
