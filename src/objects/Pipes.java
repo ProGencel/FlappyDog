@@ -111,6 +111,7 @@ public class Pipes {
 
         if(isDmg)
         {
+            gp.stopMusic(0);
             gp.isGameOver = true;
         }
 

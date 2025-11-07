@@ -1,12 +1,12 @@
 package physics;
 
 import javax.sound.sampled.*;
-import java.io.IOException;
 import java.net.URL;
 
 public class Music{
 
-    Clip clip;
+    Clip clipMusic;
+    Clip clipJumpSound;
     URL[] soundURL = new URL[2];
 
     public void setSound()
@@ -20,40 +20,76 @@ public class Music{
         }
     }
 
-    public void setFile(int i)
+    public void setSound(int i)
     {
         try
         {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
-            clip = AudioSystem.getClip();
-            clip.open(ais);
+            if(i == 0)
+            {
+                AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[0]);
+                clipMusic = AudioSystem.getClip();
+                clipMusic.open(ais);
+                setSoundLevel(5.0f,0);
+            }
+            else if(i == 1)
+            {
+                AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[1]);
+                clipJumpSound = AudioSystem.getClip();
+                clipJumpSound.open(ais);
+                setSoundLevel(-15.0f,1);
+            }
         }catch(Exception e)
         {
             e.printStackTrace();
         }
     }
 
-    public void playSound()
+    public void playSound(int i)
     {
-        if(clip != null)
+        if(i == 0)
         {
-            clip.start();
+            if(clipMusic != null)
+            {
+                clipMusic.start();
+            }
+        }
+        else if(i == 1)
+        {
+            if(clipMusic != null)
+            {
+                clipJumpSound.start();
+            }
         }
     }
 
     public void loop()
     {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clipMusic.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public void stopSound()
+    public void stopSound(int i)
     {
-        clip.stop();
+        if(i == 0)
+        {
+            clipMusic.stop();
+        }
+        else if(i == 1)
+        {
+            clipJumpSound.stop();
+        }
     }
 
-    public void setSoundLevel(float volumeLevel)
+    public void setSoundLevel(float volumeLevel,int i)
     {
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(volumeLevel);
+        if(i == 0)
+        {
+            FloatControl gainControl = (FloatControl) clipMusic.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volumeLevel);
+        }
+        else if(i == 1)
+        {
+            FloatControl gainControl = (FloatControl) clipJumpSound.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volumeLevel);
+        }
     }
 }

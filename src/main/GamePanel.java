@@ -92,13 +92,14 @@ public class GamePanel extends JPanel implements Runnable {
         go.update();
         if(isGameOver)
         {
-            stopMusic();
+            stopMusic(0);
         }
     }
 
     public void gameRestart() {
         pipemanager.setFirstPipes();
         bird.setBirdLoc();
+        playMusic(0);
         Score.score = 0;
         isGameOver = false;
         startThread();
@@ -119,21 +120,19 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playMusic(int i) {
-        music.setFile(i);
-        music.setSoundLevel(5.0f);
-        music.playSound();
+        music.setSound(i);
+        music.playSound(i);
         music.loop();
     }
 
     public void playSound(int i) {
-        music.setFile(i);
-        music.setSoundLevel(-15.0f);
-        music.playSound();
+        music.setSound(i);
+        music.playSound(i);
     }
 
-    public void stopMusic()
+    public void stopMusic(int i)
     {
-        music.stopSound();
+        music.stopSound(i);
     }
 
 }
