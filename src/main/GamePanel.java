@@ -113,6 +113,14 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
+
+        double scaleX = (double) panelWidth /windowWidth;
+        double scaleY = (double) panelHeight /windowHeight;
+
+        g2.scale(scaleX,scaleY);
+
         back.draw(g2);
         bird.drawBird(g2);
         pipemanager.draw(g2);

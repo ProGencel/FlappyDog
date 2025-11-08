@@ -12,6 +12,7 @@ public class GameOver {
     Rectangle gameOverPanel = new Rectangle();
     Color color = new Color(34, 139, 34, 240);
     Font font = new Font("Monospaced",Font.PLAIN,30);
+    boolean isNewHighScore = false;
 
     public GameOver(GamePanel gp, Score score)
     {
@@ -33,8 +34,15 @@ public class GameOver {
         int score1 = Score.loadHighScore();
         String highScore = String.valueOf(score1);
         g2.setFont(font);
+
+        if(isNewHighScore)
+        {
+            g2.drawString("NEW HIGH SCORE !!!",gameOverPanel.x+100, gameOverPanel.y+50);
+            //isNewHighScore = false;
+        }
+
+        g2.drawString("HIGH SCORE :" + highScore,gameOverPanel.x+100, gameOverPanel.y+100);
         g2.drawString("YOUR SCORE :" + Score.score,gameOverPanel.x+100, gameOverPanel.y+150);
-        g2.drawString("YOUR HIGH SCORE :" + highScore,gameOverPanel.x+100, gameOverPanel.y+100);
         g2.drawString("(PRESS 'R' FOR RESTART)",gameOverPanel.x+100, gameOverPanel.y+250);
     }
 
@@ -45,6 +53,11 @@ public class GameOver {
             if(Score.score>Score.loadHighScore())
             {
                 Score.saveHighScore(Score.score);
+                isNewHighScore = true;
+            }
+            else
+            {
+                isNewHighScore = false;
             }
         }
     }

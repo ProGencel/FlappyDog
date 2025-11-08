@@ -103,18 +103,27 @@ public class Music{
     {
         if(i == 0)
         {
-            FloatControl gainControl = (FloatControl) clipMusic.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(volumeLevel);
+            if(clipMusic != null)
+            {
+                FloatControl gainControl = (FloatControl) clipMusic.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volumeLevel);
+            }
         }
         else if(i == 1)
         {
-            FloatControl gainControl = (FloatControl) clipJumpSound.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(volumeLevel);
+            if(clipJumpSound != null)
+            {
+                FloatControl gainControl = (FloatControl) clipJumpSound.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volumeLevel);
+            }
         }
         else if(i == 2)
         {
-            FloatControl gainControl = (FloatControl) clipLose.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(volumeLevel);
+            if(clipLose != null)
+            {
+                FloatControl gainControl = (FloatControl) clipLose.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volumeLevel);
+            }
         }
     }
 }
