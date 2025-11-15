@@ -99,31 +99,32 @@ public class Music{
         }
     }
 
-    public void setSoundLevel(float volumeLevel,int i)
-    {
-        if(i == 0)
-        {
-            if(clipMusic != null)
-            {
-                FloatControl gainControl = (FloatControl) clipMusic.getControl(FloatControl.Type.MASTER_GAIN);
-                gainControl.setValue(volumeLevel);
-            }
+    public void setSoundLevel(float volumeLevel, int i) {
+        Clip clip = null;
+
+        if (i == 0) clip = clipMusic;
+        else if (i == 1) clip = clipJumpSound;
+        else if (i == 2) clip = clipLose;
+
+        if (clip == null)
+            return;
+
+        // Önce MASTER_GAIN destekleniyor mu kontrol et
+        if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+            FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gain.setValue(volumeLevel);
+            return;
         }
-        else if(i == 1)
-        {
-            if(clipJumpSound != null)
-            {
-                FloatControl gainControl = (FloatControl) clipJumpSound.getControl(FloatControl.Type.MASTER_GAIN);
-                gainControl.setValue(volumeLevel);
-            }
+
+        // Eğer MASTER_GAIN yoksa VOLUME desteğine bak
+        if (clip.isControlSupported(FloatControl.Type.VOLUME)) {
+            FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.VOLUME);
+            // volumeLevel dB olduğu için normalize et
+            float normalized = (volumeLevel + 80f) / 80f;
+            volume.setValue(Math.max(0f, Math.min(1f, normalized)));
+            return;
         }
-        else if(i == 2)
-        {
-            if(clipLose != null)
-            {
-                FloatControl gainControl = (FloatControl) clipLose.getControl(FloatControl.Type.MASTER_GAIN);
-                gainControl.setValue(volumeLevel);
-            }
-        }
+
+        System.out.println("Volume control not supported on this system.");
     }
 }
