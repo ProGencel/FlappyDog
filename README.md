@@ -47,8 +47,8 @@ Kodlarla uğraşmadan oyunu hemen oynamak için **[Releases (Sürümler)](https:
 **Nasıl Çalıştırılır?**
 İndirdiğiniz ZIP dosyasını klasöre çıkardıktan sonra:
 
-* **🪟 Windows:** Klasör içindeki `Baslat_Windows.bat` dosyasına çift tıklayın.
-* **🍎 macOS / 🐧 Linux:** Terminalden `Baslat_Mac_Linux.sh` dosyasına yetki verip (`chmod +x`) çalıştırın.
+* **🪟 Windows:** Klasör içindeki `Start Win.bat` dosyasına çift tıklayın.
+* **🍎 macOS / 🐧 Linux:** Terminalden `BStart Mac Linux.sh` dosyasına yetki verip (`chmod +x`) çalıştırın.
 
 > **🛠️ Geliştiriciler İçin:** Eğer sadece **`.jar`** dosyasına ihtiyacınız varsa, Releases kısmında `FlappyDog.jar` tek başına da sunulmuştur.
 
