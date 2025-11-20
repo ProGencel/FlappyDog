@@ -15,9 +15,8 @@ Bu proje; oyun döngüsü (Game Loop), özel çizim (Custom Painting) ve çarpı
 
 Oyunun akıcı mekaniklerini aşağıda görebilirsiniz:
 
-![Gameplay GIF](screenshots/gameplay.gif)
+<img width="957" height="480" alt="Screenshot_120" src="https://github.com/user-attachments/assets/bfeb177a-bb5c-4c5d-b95e-6ad050d26cc7" />
 
-*(Ekran görüntüleri `screenshots` klasöründedir)*
 
 ---
 
