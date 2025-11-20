@@ -42,7 +42,7 @@ Oyun mekaniği tamamen refleks ve zamanlama üzerine kuruludur.
 
 ## 📥 İndir ve Oyna (Hazır Sürüm)
 
-Kodlarla uğraşmadan oyunu hemen oynamak için **[Releases (Sürümler)](https://github.com/ProGencel/Flappy-Dog/releases/latest)** sayfasına giderek işletim sisteminize uygun paketi indirebilirsiniz.
+Kodlarla uğraşmadan oyunu hemen oynamak için **[Releases (Sürümler)](https://github.com/ProGencel/FlappyDog/releases/latest)** sayfasına giderek işletim sisteminize uygun paketi indirebilirsiniz.
 
 **Nasıl Çalıştırılır?**
 İndirdiğiniz ZIP dosyasını klasöre çıkardıktan sonra:
