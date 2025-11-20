@@ -45,7 +45,7 @@ public class Music{
                 AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[2]);
                 clipLose = AudioSystem.getClip();
                 clipLose.open(ais);
-                setSoundLevel(-20.0f,1);
+                setSoundLevel(-13.0f,2);
             }
         }catch(Exception e)
         {

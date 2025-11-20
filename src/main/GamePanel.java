@@ -24,6 +24,8 @@ public class GamePanel extends JPanel implements Runnable {
     private final int FPS = 60;
     public Thread gameThread;
     public boolean isGameOver = false;
+    boolean isLoseSoundPlayed = false;
+    public int currentFPS = 0;
 
     Music music = new Music();
     Score score = new Score(this);
@@ -78,6 +80,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             long finish = System.nanoTime();
             if (finish - start >= 1_000_000_000) {
+
+                currentFPS = frameCounter;
                 System.out.println("FPS : " + frameCounter);
                 frameCounter = 0;
                 start = finish;
@@ -92,8 +96,12 @@ public class GamePanel extends JPanel implements Runnable {
         go.update();
         if(isGameOver)
         {
-            playSound(2);
-            stopMusic(0);
+            if(!isLoseSoundPlayed)
+            {
+                playSound(2);
+                stopMusic(0);
+                isLoseSoundPlayed = true;
+            }
         }
     }
 
@@ -103,8 +111,9 @@ public class GamePanel extends JPanel implements Runnable {
         playMusic(0);
         Score.score = 0;
         isGameOver = false;
+        isLoseSoundPlayed = false;
         bird.birdVelocityY = 0;
-        stopMusic(2);
+        //stopMusic(2);
         startThread();
     }
 
@@ -116,8 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
         int panelWidth = getWidth();
         int panelHeight = getHeight();
 
-        double scaleX = (double) panelWidth /windowWidth;
-        double scaleY = (double) panelHeight /windowHeight;
+        double scaleX = (double) panelWidth / windowWidth;
+        double scaleY = (double) panelHeight / windowHeight;
 
         g2.scale(scaleX,scaleY);
 
@@ -125,6 +134,11 @@ public class GamePanel extends JPanel implements Runnable {
         bird.drawBird(g2);
         pipemanager.draw(g2);
         score.draw(g2);
+
+        g2.setColor(new Color(25, 25, 112));
+        g2.setFont(new Font("Arial", Font.BOLD, 15));
+        g2.drawString("FPS: " + currentFPS, windowWidth - 75, 20);
+
         if (isGameOver) {
             go.draw(g2);
         }

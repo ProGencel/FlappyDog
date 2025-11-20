@@ -46,7 +46,7 @@ public class Pipes {
 
     public void setCollision()
     {
-        int gapUp = -1;
+        int gapUp = -1;     //Gaps for a little tolerance
         int gapDown = -1;
         int gapLeft;
         int gapRight;

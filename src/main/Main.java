@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        JFrame window = new JFrame("Flappy Bird Game");
+        JFrame window = new JFrame("Flappy Dog");
         GamePanel gp = new GamePanel();
         window.add(gp);
 

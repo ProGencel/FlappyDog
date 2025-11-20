@@ -24,15 +24,29 @@ public class Score {
     Font customFont = new Font("Arial",Font.BOLD,fontSize);
     public static final String FILE_NAME = "highscore.txt";
 
-    public Score()
-    {
-    }
 
     public void draw(Graphics2D g2)
     {
         g2.setFont(customFont);
         String scr = String.valueOf(score);
-        g2.drawString(scr,10,20);
+
+        int x = 10;
+        int y = 25;
+
+        int outlineThickness = 1;
+
+        g2.setColor(Color.BLACK);
+
+        for(int i = -outlineThickness; i <= outlineThickness; i++) {
+            for(int j = -outlineThickness; j <= outlineThickness; j++) {
+                if(i != 0 || j != 0) {
+                    g2.drawString(scr, x + i, y + j);
+                }
+            }
+        }
+
+        g2.setColor(Color.WHITE);
+        g2.drawString(scr, x, y);
     }
 
     public static int loadHighScore()
