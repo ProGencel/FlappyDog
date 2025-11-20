@@ -68,7 +68,7 @@ Herhangi bir IDE'ye bağımlı olmadan oyunu şu şekilde çalıştırabilirsini
 
 ```bash
 # 1. Repoyu klonlayın
-git clone [https://github.com/ProGencel/Flappy-Dog.git](https://github.com/ProGencel/FlappyDog.git)
+git clone [https://github.com/ProGencel/FlappyDog.git](https://github.com/ProGencel/FlappyDog.git)
 
 # 2. Proje dizinine girin
 cd FlappyDog
