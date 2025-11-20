@@ -15,7 +15,7 @@ Bu proje; oyun döngüsü (Game Loop), özel çizim (Custom Painting) ve çarpı
 
 Oyunun akıcı mekaniklerini aşağıda görebilirsiniz:
 
-<img width="957" height="480" alt="Screenshot_120" src="https://github.com/user-attachments/assets/bfeb177a-bb5c-4c5d-b95e-6ad050d26cc7" />
+<img width="958" height="479" alt="Screenshot_121" src="https://github.com/user-attachments/assets/c5c57516-64ca-40f6-acac-803b09b3bae1" />
 
 
 ---
@@ -27,7 +27,7 @@ Oyun mekaniği tamamen refleks ve zamanlama üzerine kuruludur.
 | Tuş | İşlev | Açıklama |
 | :---: | :--- | :--- |
 | **SPACE** | <kbd>Boşluk</kbd> | Kuşu zıplatır (Jump). Yerçekimine karşı koymak için kullanılır. |
-| **ENTER** | <kbd>Enter</kbd> | Oyun bittiğinde (Game Over) oyunu anında yeniden başlatır. |
+| **R** | <kbd>R</kbd> | Oyun bittiğinde (Game Over) oyunu anında yeniden başlatır. |
 
 ---
 
@@ -35,7 +35,7 @@ Oyun mekaniği tamamen refleks ve zamanlama üzerine kuruludur.
 
 * ✅ **Java 25 Mimarisi:** En güncel Java sürümü ile geliştirilmiştir.
 * ⚡ **Akıcı Fizik Motoru:** Gerçekçi yerçekimi ve zıplama hissiyatı.
-* 🎯 **Piksel Hassasiyetinde Çarpışma:** Borulara ve zemine çarpma anında algılanır.
+* ⚖️ **Affedici Hitbox Sistemi (Forgiving Hitboxes):** Daha akıcı ve adil bir oyun deneyimi sunmak için çarpışma alanları (collision boxes) görselden hafifçe daha küçük ayarlanmıştır.
 * 📊 **Skor Sistemi:** Anlık skor takibi ve oyun sonu ekranı.
 * 🎨 **Swing Graphics2D:** Yüksek performanslı 2D çizim teknikleri.
 
