@@ -77,5 +77,5 @@ cd FlappyDog
 mkdir -p bin
 javac -d bin src/*.java
 
-# 4. Oyunu başlatın (Ana sınıfınızın adı Main ise)
+# 4. Oyunu başlatın
 java -cp bin Main
