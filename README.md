@@ -42,13 +42,24 @@ Oyun mekaniği tamamen refleks ve zamanlama üzerine kuruludur.
 
 ## 📥 İndir ve Oyna (Hazır Sürüm)
 
-Kodlarla uğraşmadan oyunu hemen oynamak için **[Releases (Sürümler)](https://github.com/ProGencel/FlappyDog/releases/latest)** sayfasına giderek işletim sisteminize uygun paketi indirebilirsiniz.
+Kodlarla uğraşmadan oyunu hemen oynamak için **[Releases (Sürümler)](https://github.com/ProGencel/FlappyDog/releases/latest)** sayfasına giderek işletim sisteminize uygun paketi (`.zip`) indirin.
 
-**Nasıl Çalıştırılır?**
-İndirdiğiniz ZIP dosyasını klasöre çıkardıktan sonra:
+### 🚀 Nasıl Başlatılır?
 
-* **🪟 Windows:** Klasör içindeki `StartWin.bat` dosyasına çift tıklayın.
-* **🍎 macOS / 🐧 Linux:** Terminalden `StartMacLinux.sh` dosyasına yetki verip (`chmod +x`) çalıştırın.
+**Önemli:** İndirdiğiniz `.zip` dosyasının içindekileri **mutlaka bir klasöre çıkartın.** ZIP içinden doğrudan çalıştırmak hatalara sebep olabilir.
+
+#### 🪟 Windows Kullanıcıları:
+1. Klasör içindeki **`StartWin.bat`** dosyasına çift tıklayın.
+2. *Eğer "Windows Kişisel Bilgisayarınızı Korudu" uyarısı çıkarsa:*
+   * **"Ek Bilgi"** (More Info) yazısına tıklayın.
+   * **"Yine de Çalıştır"** (Run Anyway) butonuna basın.
+   * *(Bu uyarı, uygulama dijital imzalı olmadığı için çıkar, güvenlidir.)*
+
+#### 🍎 macOS ve 🐧 Linux Kullanıcıları:
+1. Klasörün içinde boş bir yere sağ tıklayıp **"Terminalde Aç"** (Open in Terminal) deyin.
+2. Aşağıdaki komutu yapıştırıp `Enter`'a basarak başlatıcıya yetki verin (Sadece ilk seferde gerekir):
+   ```bash
+   chmod +x StartMacLinux.sh
 
 > **🛠️ Geliştiriciler İçin:** Eğer sadece **`.jar`** dosyasına ihtiyacınız varsa, Releases kısmında `FlappyDog.jar` tek başına da sunulmuştur.
 
