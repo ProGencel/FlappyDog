@@ -11,7 +11,7 @@ Bu proje; oyun döngüsü (Game Loop), özel çizim (Custom Painting) ve çarpı
 
 ---
 
-## 🎥 Önizleme (Demo)
+## 🎥 Önizleme
 
 Oyunun akıcı mekaniklerini aşağıda görebilirsiniz:
 
